@@ -1,0 +1,21 @@
+[package]
+name = "counter"
+version = "0.1.0"
+edition = "2021"
+license = "WTFPL"
+publish = false
+
+[dependencies]
+solana-program = "=1.10.2"
+borsh = "0.9"
+
+[features]
+test-bpf = []
+
+[dev-dependencies]
+solana-sdk = "=1.10.2"
+solana-validator = "=1.10.2"
+solana-logger = "=1.10.2"
+
+[lib]
+crate-type = ["cdylib", "lib"]

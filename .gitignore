@@ -1,0 +1,5 @@
+/*-dump.txt
+/*.so
+/target/
+/test-ledger/
+*/node_modules/
