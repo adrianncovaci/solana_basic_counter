@@ -21,12 +21,23 @@ impl Processor {
             .map_err(|_| ProgramError::InvalidInstructionData)?;
         match instruction {
             CounterInstruction::Increment => {
-                msg!("Incrementind counter");
+                msg!("Incrementing counter");
                 let mut accounts_iter = accounts.iter();
                 let count_acc = next_account_info(&mut accounts_iter)?;
                 let mut counter = Counter::try_from_slice(&count_acc.data.borrow())?;
                 counter.value += 1;
                 msg!("Updating count {}", counter.value);
+                counter.serialize(&mut *count_acc.data.borrow_mut())?;
+            }
+            CounterInstruction::Decrement => {
+                msg!("Decrementing counter");
+                let mut accounts_iter = accounts.iter();
+                let count_acc = next_account_info(&mut accounts_iter)?;
+                let mut counter = Counter::try_from_slice(&count_acc.data.borrow())?;
+                if counter.value != 0 {
+                    counter.value -= 1;
+                    msg!("Updating count {}", counter.value);
+                }
                 counter.serialize(&mut *count_acc.data.borrow_mut())?;
             }
         }

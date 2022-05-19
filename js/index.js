@@ -47,6 +47,8 @@ const main = async () => {
     }
 
   const idx = Buffer.from(new Uint8Array([0]));
+  console.log(idx);
+
 
   let incrIx = new TransactionInstruction({
     keys: [
